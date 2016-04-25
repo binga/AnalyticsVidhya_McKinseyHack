@@ -24,10 +24,8 @@ dtrain = xgb.DMatrix(train1, label=target, missing=np.nan)
 dtest = xgb.DMatrix(test1, missing=np.nan)
 
 params = {'booster':'gbtree', 'objective':'multi:softprob', 'max_depth':4, 'num_class': 3, 'seed': 0,
-          'eta':0.1, 'silent':1, 'nthread':4, 'subsample':0.9, 'colsample_bytree':1,
-          'colsample_bylevel': 1, 'min_child_weight':1, 'num_parallel_tree': 1}
+          'eta':0.1, 'nthread':4, 'subsample':0.9}
 
-# params['seed'] = 0
 num_rounds = 350
 clf_xgb = xgb.train(params, dtrain, num_rounds) # 4 fold cv-test-merror:0.18318425+0.000942040172976 
 xgb_preds = clf_xgb.predict(dtest)
